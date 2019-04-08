@@ -1,6 +1,0 @@
-applications:
-  - path: .
-    memory: 64M
-    instances: 1
-    domain: mybluemix.net
-    name: saojudasBot
