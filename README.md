@@ -83,7 +83,6 @@ Há alguns scripts disponibilizados para facilitar na hora do desenvolvimento.
 
 | Endpoint                       | Description                                                                                |
 | ------------------------------ | ------------------------------------------------------------------------------------------ |
-| POST `/api/users` **PUBLIC**   | Create an user **Required**: name, email, password, telefone                               |
-| POST `/api/session` **PUBLIC** | Login User and Return JWT Token. **Required**: telefone, password                          |
+| POST `/api/users` **PUBLIC**   | Create an user **Required**: name, email, phone. **Returns**: success, token               |
 | POST `/api/message`**PRIVATE** | Send and receive a message from Watson Assistant. **Required**: text, context, workspaceId |
 | GET `/api/message` **PRIVATE** | Get all Messages from user logged.                                                         |

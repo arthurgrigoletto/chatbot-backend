@@ -12,11 +12,6 @@ const validators = require('./app/validation');
  */
 routes.post('/users', validate(validators.User), controllers.UserController.store);
 
-/**
- * Session
- */
-routes.post('/session', validate(validators.Session), controllers.SessionController.store);
-
 routes.use(passport.authenticate('jwt', { session: false }));
 
 /**
