@@ -7,17 +7,15 @@ const User = require('../models/User');
 
 class UserController {
   async store(req, res) {
-    const { phone, email } = req.body;
-
-    if (await User.findOne({ phone })) {
-      return res.status(400).json({ error: 'This Phone is already use' });
+    console.log(req.body);
+    let user;
+    try {
+      user = await User.create(req.body);
+    } catch (err) {
+      console.log(err);
     }
 
-    if (await User.findOne({ email })) {
-      return res.status(400).json({ error: 'This Email is already use' });
-    }
-
-    const user = await User.create(req.body);
+    console.log(user);
 
     // Create JWT Payload
     const payload = {
