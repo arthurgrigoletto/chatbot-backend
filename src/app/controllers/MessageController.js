@@ -5,14 +5,14 @@ const Message = require('../models/Messages');
 
 class MessageController {
   async sendMessage(req, res) {
-    const { text, context, workspaceId } = req.body;
+    const { text, context } = req.body;
 
     const newContext = {
       ...context,
       user: req.user,
     };
 
-    const response = await WAService.sendMessage(workspaceId, text, newContext);
+    const response = await WAService.sendMessage(text, newContext);
 
     const message = await Message.create(response);
 

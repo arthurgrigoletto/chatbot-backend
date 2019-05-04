@@ -9,9 +9,9 @@ class WAService {
     });
   }
 
-  async sendMessage(workspaceId, text, context) {
+  async sendMessage(text, context) {
     const response = await this.assistant.message({
-      workspace_id: workspaceId,
+      workspace_id: process.env.WA_WORKSPACE_ID,
       input: { text },
       context,
     });

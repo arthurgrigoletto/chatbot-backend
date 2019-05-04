@@ -30,7 +30,6 @@ class UserController {
     // Sign Token
     return jwt.sign(payload, process.env.APP_SECRET, {}, (err, token) => {
       res.json({
-        success: true,
         token: `Bearer ${token}`,
       });
     });
