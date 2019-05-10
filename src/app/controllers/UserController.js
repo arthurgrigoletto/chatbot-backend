@@ -7,15 +7,7 @@ const User = require('../models/User');
 
 class UserController {
   async store(req, res) {
-    console.log(req.body);
-    let user;
-    try {
-      user = await User.create(req.body);
-    } catch (err) {
-      console.log(err);
-    }
-
-    console.log(user);
+    const user = await User.create(req.body);
 
     // Create JWT Payload
     const payload = {

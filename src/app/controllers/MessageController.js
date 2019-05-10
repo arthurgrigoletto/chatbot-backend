@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable class-methods-use-this */
 
 const WAService = require('../services/WatsonAssistantService');
@@ -5,12 +6,28 @@ const Message = require('../models/Messages');
 
 class MessageController {
   async sendMessage(req, res) {
-    const { text, context } = req.body;
+    const { text } = req.body;
 
-    const newContext = {
-      ...context,
-      user: req.user,
-    };
+    const messages = await Message.find({ 'context.user._id': req.user._id });
+
+    let newContext = {};
+
+    if (messages.length > 0) {
+      const lastMessage = messages[messages.length - 1];
+
+      const { context } = lastMessage;
+
+      if (context.user._id.toString() === req.user._id.toString()) {
+        newContext = {
+          ...context,
+          user: req.user,
+        };
+      }
+    } else {
+      newContext = {
+        user: req.user,
+      };
+    }
 
     const response = await WAService.sendMessage(text, newContext);
 

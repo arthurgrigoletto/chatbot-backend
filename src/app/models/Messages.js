@@ -31,6 +31,7 @@ const MessageSchema = mongoose.Schema({
     name: String,
     firstName: String,
     lastName: String,
+    count: Number,
     conversation_id: String,
   },
 });
