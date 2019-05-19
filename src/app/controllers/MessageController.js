@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable class-methods-use-this */
 
@@ -17,15 +18,25 @@ class MessageController {
 
       const { context } = lastMessage;
 
+      const { name } = req.user;
+      const firstName = name.split(' ')[0];
+      const lastName = name.split(' ')[1];
+
       if (context.user._id.toString() === req.user._id.toString()) {
         newContext = {
           ...context,
           user: req.user,
+          name,
+          firstName,
+          lastName,
         };
       }
     } else {
       newContext = {
         user: req.user,
+        name,
+        firstName,
+        lastName,
       };
     }
 
@@ -33,7 +44,20 @@ class MessageController {
 
     const message = await Message.create(response);
 
-    res.json(message);
+    const {
+      output,
+      context: { significant_message },
+    } = message;
+
+    const newMessage = {
+      ...message._doc,
+      output: {
+        ...output,
+        significant_message,
+      },
+    };
+
+    res.json(newMessage);
   }
 
   async listMessages(req, res) {
