@@ -46,7 +46,7 @@ class MessageController {
 
     const {
       output,
-      context: { significant_message },
+      context: { significant_message, finish_conversation },
     } = message;
 
     const newMessage = {
@@ -54,6 +54,7 @@ class MessageController {
       output: {
         ...output,
         significant_message,
+        finish_conversation,
       },
     };
 
