@@ -3,6 +3,7 @@
 /* eslint-disable class-methods-use-this */
 
 const WAService = require('../services/WatsonAssistantService');
+const MessageService = require('../services/MessageService');
 const Message = require('../models/Messages');
 
 class MessageController {
@@ -11,54 +12,15 @@ class MessageController {
 
     const messages = await Message.find({ 'context.user._id': req.user._id });
 
-    let newContext = {};
+    const contextSendToAssistant = MessageService.buildContext(messages, req.user);
 
-    const { name } = req.user;
-    const firstName = name.split(' ')[0];
-    const lastName = name.split(' ')[1];
-
-    if (messages.length > 0) {
-      const lastMessage = messages[messages.length - 1];
-
-      const { context } = lastMessage;
-
-      if (context.user._id.toString() === req.user._id.toString()) {
-        newContext = {
-          ...context,
-          user: req.user,
-          name,
-          firstName,
-          lastName,
-        };
-      }
-    } else {
-      newContext = {
-        user: req.user,
-        name,
-        firstName,
-        lastName,
-      };
-    }
-
-    const response = await WAService.sendMessage(text, newContext);
+    const response = await WAService.sendMessage(text, contextSendToAssistant);
 
     const message = await Message.create(response);
 
-    const {
-      output,
-      context: { significant_message, finish_conversation },
-    } = message;
+    const outputMessage = MessageService.buildResponseMessage(message._doc);
 
-    const newMessage = {
-      ...message._doc,
-      output: {
-        ...output,
-        significant_message,
-        finish_conversation,
-      },
-    };
-
-    res.json(newMessage);
+    res.json(outputMessage);
   }
 
   async listMessages(req, res) {
