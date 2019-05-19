@@ -2,9 +2,10 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable class-methods-use-this */
 
-const WAService = require('../services/WatsonAssistantService');
-const MessageService = require('../services/MessageService');
+const services = require('../services');
 const Message = require('../models/Messages');
+
+const { WatsonAssistantService, MessageService } = services;
 
 class MessageController {
   async sendMessage(req, res) {
@@ -14,7 +15,7 @@ class MessageController {
 
     const contextSendToAssistant = MessageService.buildContext(messages, req.user);
 
-    const response = await WAService.sendMessage(text, contextSendToAssistant);
+    const response = await WatsonAssistantService.sendMessage(text, contextSendToAssistant);
 
     const message = await Message.create(response);
 
