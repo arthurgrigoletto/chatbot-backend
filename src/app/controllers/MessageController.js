@@ -13,14 +13,14 @@ class MessageController {
 
     let newContext = {};
 
+    const { name } = req.user;
+    const firstName = name.split(' ')[0];
+    const lastName = name.split(' ')[1];
+
     if (messages.length > 0) {
       const lastMessage = messages[messages.length - 1];
 
       const { context } = lastMessage;
-
-      const { name } = req.user;
-      const firstName = name.split(' ')[0];
-      const lastName = name.split(' ')[1];
 
       if (context.user._id.toString() === req.user._id.toString()) {
         newContext = {
