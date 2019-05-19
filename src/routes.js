@@ -7,16 +7,14 @@ const routes = express.Router();
 const controllers = require('./app/controllers');
 const validators = require('./app/validation');
 
-/**
- * Users
- */
-routes.post('/users', validate(validators.User), controllers.UserController.store);
+const { UserController, MessageController, ReportController } = controllers;
+
+routes.post('/users', validate(validators.User), UserController.store);
+routes.get('/reports', ReportController.index);
 
 routes.use(passport.authenticate('jwt', { session: false }));
+routes.post('/message', MessageController.sendMessage);
+routes.get('/message', MessageController.listMessages);
+routes.post('/reports', ReportController.store);
 
-/**
- * Chat
- */
-routes.post('/message', controllers.MessageController.sendMessage);
-routes.get('/message', controllers.MessageController.listMessages);
 module.exports = routes;

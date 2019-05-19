@@ -23,6 +23,7 @@
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.4.22",
+    "mongoose-paginate": "^5.0.3",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
@@ -31,8 +32,5 @@
     "require-dir": "^1.2.0",
     "watson-developer-cloud": "^4.0.1",
     "youch": "^2.0.10"
-  },
-  "engines": {
-    "node": "^11.10.0"
   }
 }
