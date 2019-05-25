@@ -28,6 +28,7 @@ const MessageSchema = mongoose.Schema({
     user: {
       _id: String,
     },
+    system: Object,
     name: String,
     firstName: String,
     lastName: String,

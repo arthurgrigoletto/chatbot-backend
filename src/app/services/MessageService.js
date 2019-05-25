@@ -15,6 +15,8 @@ class MessageService {
 
       const { context } = lastMessage;
 
+      console.log(context);
+
       if (context.user._id.toString() === user._id.toString()) {
         newContext = {
           ...context,
