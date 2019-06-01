@@ -37,7 +37,7 @@ class ReportController {
     const correctFirstTry = await Reports.find({ is_correct: true, count: 1 });
     const correctSecondTry = await Reports.find({ is_correct: true, count: 2 });
     const correctThirdTry = await Reports.find({ is_correct: true, count: 3 });
-    const unsolved = await Reports.find({ is_correct: false });
+    const unsolved = await Reports.find({ is_correct: false, count: { $gte: 3 } });
     const reports = await Reports.find();
 
     const response = {
