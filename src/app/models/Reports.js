@@ -7,7 +7,8 @@ const ReportSchema = mongoose.Schema({
   },
   input: String,
   output: String,
-  isCorrect: Boolean,
+  is_correct: Boolean,
+  count: Number,
   created_at: {
     type: Date,
     default: Date.now,

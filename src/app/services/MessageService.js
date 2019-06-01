@@ -15,8 +15,6 @@ class MessageService {
 
       const { context } = lastMessage;
 
-      console.log(context);
-
       if (context.user._id.toString() === user._id.toString()) {
         newContext = {
           ...context,
@@ -40,12 +38,13 @@ class MessageService {
   buildResponseMessage(responseFromAssistant) {
     const {
       output,
-      context: { significant_message, finish_conversation },
+      context: { significant_message, finish_conversation, count },
     } = responseFromAssistant;
 
     return {
       output: {
         ...output,
+        count,
         significant_message,
         finish_conversation,
       },
