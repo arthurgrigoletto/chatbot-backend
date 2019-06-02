@@ -38,7 +38,7 @@ class MessageService {
   buildResponseMessage(responseFromAssistant) {
     const {
       output,
-      context: { significant_message, finish_conversation, count },
+      context: { significant_message, finishing_conversation, count },
     } = responseFromAssistant;
 
     return {
@@ -46,7 +46,7 @@ class MessageService {
         ...output,
         count,
         significant_message,
-        finish_conversation,
+        finishing_conversation,
       },
     };
   }
