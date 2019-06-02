@@ -16,7 +16,16 @@ class MessageController {
 
     const response = await WatsonAssistantService.sendMessage(text, contextSendToAssistant);
 
-    const message = await Message.create(response);
+    const responseToSave = {
+      ...response,
+      output: {
+        text: response.output.text[0],
+      },
+    };
+
+    console.log(responseToSave);
+
+    const message = await Message.create(responseToSave);
 
     const outputMessage = MessageService.buildResponseMessage(message._doc);
 

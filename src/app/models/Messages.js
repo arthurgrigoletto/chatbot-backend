@@ -20,11 +20,7 @@ const MessageSchema = mongoose.Schema({
     },
   ],
   output: {
-    text: [
-      {
-        type: String,
-      },
-    ],
+    text: String,
   },
   context: {
     user: {
