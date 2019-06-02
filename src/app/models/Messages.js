@@ -20,9 +20,11 @@ const MessageSchema = mongoose.Schema({
     },
   ],
   output: {
-    text: {
-      type: String,
-    },
+    text: [
+      {
+        type: String,
+      },
+    ],
   },
   context: {
     user: {
@@ -33,6 +35,7 @@ const MessageSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
     count: Number,
+    last_intent: String,
     significant_message: Boolean,
     finish_conversation: Boolean,
     conversation_id: String,
