@@ -33,7 +33,7 @@ const MessageSchema = mongoose.Schema({
     count: Number,
     last_intent: String,
     significant_message: Boolean,
-    finish_conversation: Boolean,
+    finishing_conversation: Boolean,
     conversation_id: String,
   },
 });
