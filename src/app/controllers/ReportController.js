@@ -5,13 +5,17 @@ const Reports = require('../models/Reports');
 class ReportController {
   async index(req, res) {
     const {
-      limit = 10, page = 1, isCorrect, sort = 'asc',
+      limit = 10, page = 1, isCorrect, sort = 'desc', from, to = new Date(),
     } = req.query;
 
     const filters = {};
 
     if (isCorrect) {
       filters.isCorrect = isCorrect;
+    }
+
+    if (from) {
+      filters.created_at = { $gte: from, $lte: to };
     }
 
     const reports = await Reports.paginate(filters, {

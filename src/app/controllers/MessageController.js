@@ -23,8 +23,6 @@ class MessageController {
       },
     };
 
-    console.log(responseToSave);
-
     const message = await Message.create(responseToSave);
 
     const outputMessage = MessageService.buildResponseMessage(message._doc);
