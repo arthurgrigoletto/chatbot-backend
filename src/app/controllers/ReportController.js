@@ -1,17 +1,18 @@
+/* eslint-disable camelcase */
 /* eslint-disable class-methods-use-this */
 
 const Reports = require('../models/Reports');
 
 class ReportController {
-  async index(req, res) {
+  async search(req, res) {
     const {
-      limit = 10, page = 1, isCorrect, sort = 'desc', from, to = new Date(),
-    } = req.query;
+      limit = 10, page = 1, is_correct, sort = 'desc', from, to = new Date(),
+    } = req.body;
 
     const filters = {};
 
-    if (isCorrect) {
-      filters.isCorrect = isCorrect;
+    if (is_correct) {
+      filters.is_correct = is_correct;
     }
 
     if (from) {
