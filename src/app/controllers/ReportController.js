@@ -39,10 +39,22 @@ class ReportController {
   }
 
   async metrics(req, res) {
-    const correctFirstTry = await Reports.find({ is_correct: true, count: 1 });
-    const correctSecondTry = await Reports.find({ is_correct: true, count: 2 });
-    const correctThirdTry = await Reports.find({ is_correct: true, count: 3 });
-    const unsolved = await Reports.find({ is_correct: false, count: { $gte: 3 } });
+    const { from, to = new Date() } = req.body;
+    let created_at = {
+      $lte: to,
+    };
+
+    if (from) {
+      created_at = {
+        ...created_at,
+        $gte: from,
+      };
+    }
+
+    const correctFirstTry = await Reports.find({ is_correct: true, count: 1, created_at });
+    const correctSecondTry = await Reports.find({ is_correct: true, count: 2, created_at });
+    const correctThirdTry = await Reports.find({ is_correct: true, count: 3, created_at });
+    const unsolved = await Reports.find({ is_correct: false, count: { $gte: 3 }, created_at });
     const reports = await Reports.find();
 
     const response = {

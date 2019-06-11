@@ -11,7 +11,7 @@ const { UserController, MessageController, ReportController } = controllers;
 
 routes.post('/users', validate(validators.User), UserController.store);
 routes.post('/reports/search', ReportController.search);
-routes.get('/reports/metrics', ReportController.metrics);
+routes.post('/reports/search_metrics', ReportController.metrics);
 
 routes.use(passport.authenticate('jwt', { session: false }));
 routes.post('/message', MessageController.sendMessage);
