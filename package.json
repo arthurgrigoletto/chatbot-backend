@@ -1,5 +1,9 @@
 {
   "name": "backend",
+  "author": {
+    "name": "Arthur Grigoletto",
+    "email": "arthur.grigoletto.lima@gmail.com"
+  },
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
