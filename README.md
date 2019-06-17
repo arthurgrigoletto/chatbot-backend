@@ -81,10 +81,11 @@ Há alguns scripts disponibilizados para facilitar na hora do desenvolvimento.
 
 ## Routes
 
-| Endpoint                        | Description                                                                                                |
-| ------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| POST `/api/users` **PUBLIC**    | Create an user **Required**: name, email, phone. **Returns**: success, token                               |
-| GET `/api/reports` **PUBLIC**   | Get all Reports **Optional Query**: limit: Number, page: Number, sort: ['asc', 'desc'], isCorrect: boolean |
-| POST `/api/message`**PRIVATE**  | Send and receive a message from Watson Assistant. **Required**: text: String                               |
-| GET `/api/message` **PRIVATE**  | Get all Messages from user logged.                                                                         |
-| POST `/api/reports` **PRIVATE** | Save an important reports. **Required**: input: String, output: String, isCorrect: Boolean                 |
+| Endpoint                                     | Description                                                                                                |
+| -------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| POST `/api/users` **PUBLIC**                 | Create an user **Required**: name, email, phone. **Returns**: success, token                               |
+| POST `/api/reports/search` **PUBLIC**        | Get all Reports **Optional Query**: limit: Number, page: Number, sort: ['asc', 'desc'], isCorrect: boolean |
+| POST `/api/reports/search_metrics`**PUBLIC** | Get all metrics from reports **Optional Query**: from: Date, to: Date                                      |
+| POST `/api/reports` **PRIVATE**              | Save an important reports. **Required**: input: String, output: String, isCorrect: Boolean                 |
+| POST `/api/message`**PRIVATE**               | Send and receive a message from Watson Assistant. **Required**: text: String                               |
+| GET `/api/message` **PRIVATE**               | Get all Messages from user logged.                                                                         |
